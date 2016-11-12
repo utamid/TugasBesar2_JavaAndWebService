@@ -1,0 +1,82 @@
+html {
+	font-family: Montserrat;
+}
+
+/* SaleProject */
+h1 {
+	margin-top: 40px;
+	font-size: 30px;
+	text-align: center;
+	font-weight: normal;
+}
+.sale {
+	color: #E4001B;
+}
+.project {
+	color: #6194BC;
+}
+
+.box {
+	width: 80%;
+	margin: auto;
+	margin-bottom: 100px;
+}
+
+/* Please Login */
+h2 {
+	margin-top: 35px;
+	margin-bottom: 15px;
+	font-weight: normal;
+	font-size: 23px;
+}
+
+form {
+	margin-top: 20px;
+	font-size: 12px;
+}
+form input[type=text], input[type=password], input[type=tel] {
+	font-family: Montserrat;
+	margin: auto;
+	margin-bottom: 15px;
+	width: 100%;
+	padding: 5px 0px;
+}
+form textarea {
+	width: 100%;
+	font-family: 'Montserrat', sans-serif;
+	resize: none;
+	margin-bottom: 15px;
+}
+input[type=submit] {
+	margin: 0;
+	float: right;
+	font-size: 14px;
+	color: white;
+	background-color: #6194BC;
+	border: 0px;
+	font-family: Montserrat;
+	padding: 5px 22px 5px 22px;
+	cursor: pointer;
+}
+.err-msg {
+	color: #E4001B;
+}
+
+/* Invalid */
+.inv {
+	display: inline-block;
+	color: #E4001B;
+}
+
+.regis {
+	margin: 0;
+	display: static;
+	clear: right;
+	font-size: 15px;
+}
+.regis a {
+	text-decoration: none;
+	color: #6194BC;
+	cursor: pointer;
+}
+
