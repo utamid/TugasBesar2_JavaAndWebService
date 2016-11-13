@@ -2,11 +2,10 @@
 
 Melakukan *upgrade* Website Marketplace sederhana pada Tugas 1 dengan mengaplikasikan **arsitektur web service REST dan SOAP**.
 
-**Luangkan waktu untuk membaca spek ini sampai selesai. Kerjakan hal yang perlu saja.**
 
 ### Tujuan Pembuatan Tugas
 
-Diharapkan dengan tugas ini anda dapat mengerti:
+Tujuan pembuatan tugas ini adalah untuk memahami:
 * Produce dan Consume REST API
 * Mengimplementasikan service Single Sign-On (SSO) sederhana
 * Produce dan Consume Web Services dengan protokol SOAP
@@ -14,15 +13,13 @@ Diharapkan dengan tugas ini anda dapat mengerti:
 
 ### Petunjuk Pengerjaan
 ## Anggota Tim
-
-Setiap kelompok beranggotakan **3 - 4 orang**. Daftar anggota kelompok terdapat pada link berikut: https://drive.google.com/open?id=1wpzU2VHZXvSVNR6TS4sxILVvHimQYhxQhorMr1nSelw
+**Kelompok Seterah**
+1. Vitra Chandra    /   13514043
+2. Steffi Indrayani /   13514063
+3. Diastuti Utami   /   13514071
 
 ## Petunjuk Pengerjaan
 
-1. Fork pada repository ini dengan organisasi yang telah dibuat pada Tugas Besar 1.
-2. Ubah hak akses repository hasil Fork anda menjadi **private**.
-3. [DELIVERABLE] Buat tugas sesuai spesifikasi dan silakan commit pada repository anda (hasil fork). Lakukan berberapa commit dengan pesan yang bermakna, contoh: `fix css`, `create post done`, jangan seperti `final`, `benerin dikit`. Disarankan untuk tidak melakukan commit dengan perubahan yang besar karena akan mempengaruhi penilaian (contoh: hanya melakukan satu commit kemudian dikumpulkan). Sebaiknya commit dilakukan setiap ada penambahan fitur. **Commit dari setiap anggota tim akan mempengaruhi penilaian individu.** Jadi, setiap anggota tim harus melakukan sejumlah commit yang berpengaruh terhadap proses pembuatan aplikasi.
-7. Hapus bagian yang tidak perlu dari *readme* ini.
 8. [DELIVERABLE] Berikan penjelasan mengenai hal di bawah ini pada bagian **Penjelasan** dari *readme* repository git Anda:
     - Basis data dari sistem yang Anda buat.
     - Konsep *shared session* dengan menggunakan REST.
@@ -44,7 +41,7 @@ Perhatikan bahwa Anda tidak perlu menggunakan banyak mesin untuk membuat aplikas
 
 ### Deskripsi Tugas
 
-Anda diminta untuk membuat marketplace sederhana seperti tugas 1.  Kebutuhan fungsional dan non-fungsional tugas yang harus dibuat adalah sebagai berikut.
+Kebutuhan fungsional dan non-fungsional tugas yang harus dibuat adalah sebagai berikut.
 
 1. Halaman registrasi, login, catalog, purchase confirmation, your products, add product, edit product, sales, dan purchases seperti pada tugas 1.
 2. Marketplace web service dengan fungsi-fungsi sesuai kebutuhan sistem dalam mengakses data (kecuali login, register, dan logout).
@@ -95,20 +92,29 @@ Perhatikan pemanggilan pada contoh ini seperti melakukan remote procedure call.
 4. Untuk purchase product, like product, unlike product, edit product, delete product, get purchased products, get sold products kira-kira memiliki mekanisme yang sama dengan add product di atas.
 5. Silakan definisikan format object request dan response sesuai kebutuhan anda.
 
-#### Prosedur Demo
-Sebelum demo, asisten akan melakukan checkout ke hash commit terakhir yang dilakukan sebelum deadline. Hal ini digunakan untuk memastikan kode yang akan didemokan adalah kode yang terakhir disubmit sebelum deadline.
 
 #### Bonus
 Anda tidak dituntut untuk mengerjakan ini. Tetapi bila Anda cukup dewa (baca=tertantang) silakan selesaikan permasalahan berikut:
 - Mekanisme *auto-renew* access token yang tepat sehingga user tidak ter-logout secara paksa saat melakukan serangkaian aktivitas pada sistem dalam waktu yang cukup lama. Access token dapat di generate kembali ketika lifetime dari token tersebut habis. Cara implementasi dibebaskan.
 
-Fokus terlebih dahulu menyelesaikan semua spesifikasi yang ada sebelum memikirkan bonus.
 
 ### Penjelasan
-Berikan penjelasan mengenai konsep diatas.
+Berikut penjelasan mengenai beberapa konsep yang digunakan pada pembuatan tugas ini
+1.  Basis data dari sistem. <br>
+    Basis data dari sistem website marketplace sederhana yang kelompok buat terdiri dari dua basis data, yakni basis data **_identityservice_** dan basis data **_marketplace_**.
+    Basis data **_identityservice_** berisi informasi pengguna. Basis data ini terdiri dari dua relasi, yakni relasi *user* dan *token*. Relasi *user* berisi informasi mengenai pengguna. <br>
+    Relasi *token* berisi nomor token pengguna ketika mengakses website marketplace dengan batas waktu akses. <br>
+    Basis data **_marketplace_** berisi informasi produk dan pembelian. Basis data ini terdiri dari tiga relasi, yakni relasi *product*, *purchase*, dan *likes*. Relasi *product* berisi informasi mengenai produk.
+    Relasi *purchase* berisi informasi pembelian, dan terakhir relasi *likes* terdiri dari informasi like pada produk.
+    
+2.  Konsep *shared session* dengan menggunakan REST.
+3.  Pembangkitan token dan expire time pada sistem yang anda buat.
+    Token pada website marketplace sederhana ini dibangkitkan ketika pengguna berhasil melakukan login atau register. Token tersebut disimpan pada basis data beserta id user. Token merupakan suatu karakter yang diciptakan dari UUID. <br>
+    Token dihilangkan ketika pengguna melakukan logout atau waktu sesi sudah habis. Token dihapus dari basis data. Expiry date juga dibangkitkan di saat yang bersamaan
+    - Kelebihan dan kelemahan dari arsitektur aplikasi tugas ini, dibandingkan dengan aplikasi monolitik (login, CRUD DB, dll jadi dalam satu aplikasi)
+
 
 ### Pembagian Tugas
-"Gaji buta dilarang dalam tugas ini. Bila tak mengerti, luangkan waktu belajar lebih banyak. Bila belum juga mengerti, belajarlah bersama-sama kelompokmu. Bila Anda sekelompok bingung, bertanyalah (bukan menyontek) ke teman seangkatanmu. Bila seangkatan bingung, bertanyalah pada asisten manapun."
 
 *Harap semua anggota kelompok mengerjakan SOAP dan REST API kedua-duanya*. Tuliskan pembagian tugas seperti berikut ini.
 
