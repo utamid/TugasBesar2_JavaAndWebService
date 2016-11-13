@@ -101,38 +101,56 @@ Anda tidak dituntut untuk mengerjakan ini. Tetapi bila Anda cukup dewa (baca=ter
 ### Penjelasan
 Berikut penjelasan mengenai beberapa konsep yang digunakan pada pembuatan tugas ini
 1.  Basis data dari sistem. <br>
-    Basis data dari sistem website marketplace sederhana yang kelompok buat terdiri dari dua basis data, yakni basis data **_identityservice_** dan basis data **_marketplace_**.
-    Basis data **_identityservice_** berisi informasi pengguna. Basis data ini terdiri dari dua relasi, yakni relasi *user* dan *token*. Relasi *user* berisi informasi mengenai pengguna. <br>
-    Relasi *token* berisi nomor token pengguna ketika mengakses website marketplace dengan batas waktu akses. <br>
+    Basis data dari sistem website marketplace sederhana yang kelompok buat terdiri dari dua basis data, yakni basis data **_identityservice_** dan basis data **_marketplace_**. Basis data **_identityservice_** berisi informasi pengguna. Basis data ini terdiri dari dua relasi, yakni relasi *user* dan *token*. Relasi *user* berisi informasi mengenai pengguna. Relasi *token* berisi nomor token pengguna ketika mengakses website marketplace dengan batas waktu akses. <br>
     Basis data **_marketplace_** berisi informasi produk dan pembelian. Basis data ini terdiri dari tiga relasi, yakni relasi *product*, *purchase*, dan *likes*. Relasi *product* berisi informasi mengenai produk.
     Relasi *purchase* berisi informasi pembelian, dan terakhir relasi *likes* terdiri dari informasi like pada produk.
-    
 2.  Konsep *shared session* dengan menggunakan REST.
+    Konsep *shared session* adalah setiap *user* yang berhasil melakukan login dan berhasil mendapatkan token. Token yang diterima oleh *user* tersebut dapat digunakan oleh *user* lain untuk mendapatkan sesi yang sama walaupun berada pada lokasi yang berbeda.
+
 3.  Pembangkitan token dan expire time pada sistem yang anda buat.
     Token pada website marketplace sederhana ini dibangkitkan ketika pengguna berhasil melakukan login atau register. Token tersebut disimpan pada basis data beserta id user. Token merupakan suatu karakter yang diciptakan dari UUID. <br>
-    Token dihilangkan ketika pengguna melakukan logout atau waktu sesi sudah habis. Token dihapus dari basis data. Expiry date juga dibangkitkan di saat yang bersamaan
-    - Kelebihan dan kelemahan dari arsitektur aplikasi tugas ini, dibandingkan dengan aplikasi monolitik (login, CRUD DB, dll jadi dalam satu aplikasi)
-
+    Token dihilangkan ketika pengguna melakukan logout atau waktu sesi sudah habis. Token dihapus dari basis data. Expire time juga dibangkitkan di saat yang bersamaan ketika token dibangkitkan. Expire time dimasukan ke dalam basis data dengan menyimpan waktu sekarang ditambah 10 menit. <br> 
+4.  Kelebihan dan kelemahan dari arsitektur aplikasi tugas ini, dibandingkan dengan aplikasi monolitik (login, CRUD DB, dll jadi dalam satu aplikasi) <br>
+    Kelebihan dari arsitektur aplikasi ini dibandingkan dengan aplikasi monolitik adalah semua fungsionalitas dibagi ke dalam service sehingga lebih mudah mengatasi satu masalah. Service berjalan secara mandiri sehingga lebih mudah dikelola.
+    Kekurangan dari arsitektur aplikasi ini dibandingkan dengan aplikasi monolitik pembuatannya cenderung kompleks dibandingkan dengan aplikasi monolitik.
 
 ### Pembagian Tugas
 
 *Harap semua anggota kelompok mengerjakan SOAP dan REST API kedua-duanya*. Tuliskan pembagian tugas seperti berikut ini.
 
 REST :
-1. Generate token : 135130XX
-2. Validasi token : 135130XX
-3. Fungsionaltiax X : 135130XX
-4. ...
+1. Generate token           : 13514063
+2. Validasi token           : 13514043
+3. Fungsionaltias Login     : 13514063
+4. Fungsionalitas Register  : 13514043
+5. Fungsionalitas Logout    : 13514071
+6. Fungsionalitas Confirmation Purchase Info User : 13514071
+7. Fungsionalitas Catalog Info User : 13514043
+8. Fungsionalitas Purchase Info User : 13514043
+9. Fungsionalitas Sales Info User : 13514043
+10. Fungsionalitas Your Product Info User : 13514043
 
 SOAP :
-1. Add Produce : 135130xx
-2. Fungsionalitas Y : 135130xx
-3. ...
+1. Fungsionalitas Search Catalog    : 13514043
+2. Fungsionalitas Show Catalog      : 13514043
+3. Fungsionalitas like              : 13514043
+4. Fungsionalitas Confirmation Purchase :   13514063
+5. Fungsionalitas Show Product       : 13514043
+6. Fungsionalitas Show Sales        : 13514043
+7. Fungsionalitas Show Purchase     : 13514043
+8. Fungsionalitas Add Product       : 13514071
+9. Fungsionalitas Edit Product      : 13514071
 
 Web app (JSP) :
-1. Halaman Login : 
-2. Halaman X :
-3. ...
+1. Halaman Login    : 13514063, 13514071
+2. Halaman Register : 13514063, 13514071
+3. Halaman Catalog  : 13514043
+4. Halaman Confirmation Purchase    :   13514063
+5. Halaman Your Product :   13514043
+6. Halaman Sales    :   13514043
+7. Halaman Purchase :   13514043
+8. Halaman Add Product  :   13514071
+9. Halaman Edit Product :   13514063, 13514071
 
 ## About
 
