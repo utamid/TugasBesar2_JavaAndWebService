@@ -36,16 +36,20 @@ h2 {
 .hi p {
 	margin-bottom: 0px;
 }
-.logout {
-	font-size: 80%;
-	margin-top: 0px;
-	color: #E4001B;
-	cursor: pointer;
+
+form input[type="submit"].logout {
+    font-size: 80%;
+    padding: 0%;
+    width: 57%;
+    color: #E4001B;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 0px;
+    border: 0px;
+    background-color: white;
 }
-.logout a {
-	color: #E4001B;
-	text-decoration: none;
-}
+
+
 /* list */
 .menu {
 	margin-left: 10%;

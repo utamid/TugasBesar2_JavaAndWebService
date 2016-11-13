@@ -6,7 +6,67 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@page import="org.json.simple.parser.JSONParser"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.io.DataOutputStream"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.net.HttpURLConnection"%>
+<%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="java.net.URL"%>
+<%
+    // HTTP POST request
+            int id_user;
+            
+            if(request.getParameter("logout")!=null) {
+                id_user = 24; /*gimana cara user?*/
+                String USER_AGENT = "Mozilla/5.0";
+                
+                String url = "http://localhost:8080/identityservice/logout";
+                
+                URL connection = new URL(url);
+                HttpURLConnection con = (HttpURLConnection) connection.openConnection();
+               
+                con.setRequestMethod("POST");
+                con.setRequestProperty("User-Agent", USER_AGENT);
+                con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+                String urlParameters = "id_user="+id_user;
+                // Send post request
 
+                con.setDoOutput(true);
+                DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+                wr.writeBytes(urlParameters);
+                wr.flush();
+                wr.close();
+                   
+
+                int responseCode = con.getResponseCode();
+
+                
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuilder resp = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                        resp.append(inputLine);
+                }
+                in.close();
+                JSONParser parser = new JSONParser();
+                                
+                JSONObject obj = (JSONObject) parser.parse(resp.toString());
+                     
+                String status= (String) obj.get("status");                
+                
+                //System.out.println(status);
+                HttpSession sessions = request.getSession();
+   
+                sessions.setAttribute("status",status);
+                System.out.println("status = "+ status);
+                response.sendRedirect("login.jsp");
+                
+            }
+        
+%>
 
 <!DOCTYPE html>
 <html>
@@ -28,10 +88,12 @@
 		</h1>
 		<div class="hi">
                     <p>Hi, $usn!</p>
-                    <p class="logout"> <a href="login.jsp"> logout </a></p> 
+                    <form method="POST" name="logout">
+                        <input type="submit" value ="logout" name="logout" class = "logout" >
+                    </form>
+
                 
-                    
-l			
+                    			
 		</div>
 		<div class="menu"><ul>
                     <li><a href="catalog.php?id_user=$id_user">Catalog</a></li>
