@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="product">
+      <implementation-class>Marketplace.product</implementation-class>
+    </service>
+    <service name="catalog">
+      <implementation-class>Marketplace.catalog</implementation-class>
+    </service>
+    <service name="sales">
+      <implementation-class>Marketplace.sales</implementation-class>
+    </service>
+    <service name="purchase">
+      <implementation-class>Marketplace.purchase</implementation-class>
+    </service>
+    <service name="confirmPurchase">
+      <implementation-class>Marketplace.confirmPurchase</implementation-class>
+    </service>
+    <service name="like">
+      <implementation-class>Marketplace.like</implementation-class>
+    </service>
+    <service name="Delete">
+      <implementation-class>Marketplace.Delete</implementation-class>
+    </service>
+    <service name="editProduct">
+      <implementation-class>Marketplace.editProduct</implementation-class>
+    </service>
+    <service name="addProduct">
+      <implementation-class>Marketplace.addProduct</implementation-class>
+    </service>
+    <service name="service">
+      <implementation-class>Marketplace.service</implementation-class>
+    </service>
+  </services>
+  <clients>
+  </clients>
+</jax-ws>

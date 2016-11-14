@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://Marketplace/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://Marketplace/">
+
+<xs:element name="insertnewproduct" type="tns:insertnewproduct"/>
+
+<xs:element name="insertnewproductResponse" type="tns:insertnewproductResponse"/>
+
+<xs:complexType name="insertnewproduct">
+<xs:sequence>
+<xs:element name="token" type="xs:string" minOccurs="0"/>
+<xs:element name="prodname" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:int"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="photo" type="xs:string" minOccurs="0"/>
+<xs:element name="seller_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertnewproductResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:map" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="map">
+<xs:sequence>
+<xs:element name="listitem" type="tns:item" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="listpurchase" type="tns:itempurchase" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="listuser" type="tns:user" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="obj" type="xs:int"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="token" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="item">
+<xs:sequence>
+<xs:element name="date" type="xs:string" minOccurs="0"/>
+<xs:element name="desc" type="xs:string" minOccurs="0"/>
+<xs:element name="iditem" type="xs:string" minOccurs="0"/>
+<xs:element name="idpro" type="xs:int"/>
+<xs:element name="like" type="xs:string" minOccurs="0"/>
+<xs:element name="likes" type="xs:int"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="photo" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:int"/>
+<xs:element name="purch" type="xs:int"/>
+<xs:element name="time" type="xs:string" minOccurs="0"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="itempurchase">
+<xs:sequence>
+<xs:element name="add" type="xs:string" minOccurs="0"/>
+<xs:element name="consignee" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="xs:string" minOccurs="0"/>
+<xs:element name="phonenumber" type="xs:string" minOccurs="0"/>
+<xs:element name="photo" type="xs:string" minOccurs="0"/>
+<xs:element name="postalcode" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:int"/>
+<xs:element name="prodname" type="xs:string" minOccurs="0"/>
+<xs:element name="quantity" type="xs:int"/>
+<xs:element name="time" type="xs:string" minOccurs="0"/>
+<xs:element name="total" type="xs:int"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="user">
+<xs:sequence>
+<xs:element name="address" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="FName" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="phonenumber" type="xs:string" minOccurs="0"/>
+<xs:element name="postalcode" type="xs:string" minOccurs="0"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

@@ -1,0 +1,136 @@
+html {
+	font-family: Montserrat;
+}
+
+/* SaleProject */
+h1 {
+	margin-top: 40px;
+	font-size: 30px;
+	text-align: center;
+	font-weight: normal;
+}
+.sale {
+	color: #E4001B;
+}
+.project {
+	color: #6194BC;
+}
+
+.box {
+	width: 80%;
+	margin: auto;
+}
+
+/* What */
+h2 {
+	margin-top: 35px;
+	margin-bottom: 15px;
+	font-weight: normal;
+	font-size: 23px;
+}
+
+/* Hi */
+.hi {
+	float: right;
+	text-align: right;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0px 10% 20px 10%;
+}
+.hi p {
+	margin-bottom: 0px;
+}
+form input[type="submit"].logout {
+        font-family: Montserrat;
+	font-size: 80%;
+	margin-top: 0px;
+	color: #E4001B;
+	cursor: pointer;
+	border: none;
+	background: none;
+}
+form input[type="submit"].logout a {
+	color: #E4001B;
+	text-decoration: none;
+}
+
+/* list */
+.menu {
+	margin-left: 10%;
+	margin-right: 10%;
+	clear: right;
+	text-align: center;
+	width: 90%;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    margin-bottom: 50px;
+}
+li {
+    float: left;
+    width: 17.5%;
+    border: 1px solid black;
+}
+li a {
+    display: block;
+    color: black;
+    padding: 8px 0px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 80%;
+}
+li a:hover {
+    background-color: #6194BC;
+    color: white;
+}
+.active {
+	background-color: #6194BC;
+    color: white;
+}
+
+.fill-form {
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 100px;
+	font-size: 14px;
+}
+form input[type="reset"], input[type="submit"] {
+	float: right;
+	color: white;
+	background-color: #3E88FC;
+	margin: 10px;
+	border: none;
+	cursor: pointer;
+	padding: 6px 18px;
+	width: 20%;
+	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+}
+form input[type="text"] {
+	width: 100%;
+	height: 5%;
+	padding: 0px;
+	font-family: 'Montserrat', sans-serif;
+	margin-bottom: 20px;
+}
+textarea {
+	height: 15%;
+	width: 100%;
+	font-family: 'Montserrat', sans-serif;
+	resize: none;
+	margin-bottom: 20px;
+}
+form input[type="file"] {
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+.err-msg {
+	font-size: 12px;
+	color: #E4001B;
+}
