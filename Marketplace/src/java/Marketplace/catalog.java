@@ -40,7 +40,6 @@ public class catalog {
         ArrayList<item> list = new ArrayList();
         request req = new request();
         ArrayList<String> vtoken = req.requestValidatedToken(token);
-        
         connectDB connDB = new connectDB();
         Connection conn = connDB.connectMP();
         PreparedStatement sql;
@@ -104,6 +103,7 @@ public class catalog {
         } catch (SQLException ex) {
             Logger.getLogger(request.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         map m = new map(vtoken.get(0), vtoken.get(1), 0, list, null, null);
         connDB.closeConn();
         System.out.println("f");

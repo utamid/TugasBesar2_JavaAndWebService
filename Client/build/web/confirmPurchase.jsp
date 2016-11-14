@@ -102,7 +102,6 @@
                         marketplace.ConfirmPurchase port = service.getConfirmPurchasePort();
                         java.lang.String idProduct = request.getParameter("id_product");
                         marketplace.Map result = port.showProductInfo(token, idProduct);
-                        String status = result.getStatus();
                         if (result.getStatus().equals("valid")) {
                             HttpSession sessions = request.getSession();
                             sessions.setAttribute("token", result.getToken());
@@ -144,21 +143,17 @@
                 marketplace.ConfirmPurchase_Service service = new marketplace.ConfirmPurchase_Service();
                 marketplace.ConfirmPurchase port = service.getConfirmPurchasePort();
                 java.lang.String idUser = idus;
+                token = (String) request.getSession().getAttribute("token");
                 marketplace.Map result = port.showBuyerInfo(token, idUser);
-                System.out.println("ccc");
                 if (result.getStatus().equals("valid")) {
-                    System.out.println("eee");
                     HttpSession sessions = request.getSession();
                     sessions.setAttribute("token", result.getToken());
                     sessions.setAttribute("status", "valid");
-                    System.out.println("fff");
                 } else {
-                    System.out.println("xxx");
                     HttpSession sessions = request.getSession();
                     sessions.setAttribute("status", "invalid");
                     response.sendRedirect("login.jsp");
                 }
-                System.out.println("ddd");
                 out.println("<div class=\"con-form\">" +
                                 "Consignee <br>" +
                                 "<div id = \"errcons\" class=\"err-msg\"> </div>" +
@@ -188,6 +183,7 @@
         <%
         if (request.getMethod() == "POST") {    
             try {
+                token = (String) request.getSession().getAttribute("token");
                 marketplace.ConfirmPurchase_Service service = new marketplace.ConfirmPurchase_Service();
                 marketplace.ConfirmPurchase port = service.getConfirmPurchasePort();
                 String idpro = request.getParameter("id_product");

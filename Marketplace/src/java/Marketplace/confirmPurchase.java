@@ -69,13 +69,19 @@ public class confirmPurchase {
      */
     @WebMethod(operationName = "showBuyerInfo")
     public map showBuyerInfo(@WebParam(name = "token") String token, @WebParam(name = "id_user") String id_user) {
-        int x = Integer.parseInt(id_user);
         request req = new request();
+        
+        System.out.println("ini " + token);
+        ArrayList<String> vtoken = req.requestValidatedToken(token);
+        
+        System.out.println("ini2 " + vtoken.get(0));
+        int x = Integer.parseInt(id_user);
         user userinfo = req.requestUser(x);
+        
         ArrayList<user> list = new ArrayList();
         list.add(userinfo);
-        ArrayList<String> vtoken = req.requestValidatedToken(token);
-        System.out.println("ini" +vtoken.get(1));
+        System.out.println("itu " + userinfo.getFName());
+        System.out.println("ini " + vtoken.get(1));
         map m = new map(vtoken.get(0), vtoken.get(1), 0, null, null, list);
         return m;
     }
