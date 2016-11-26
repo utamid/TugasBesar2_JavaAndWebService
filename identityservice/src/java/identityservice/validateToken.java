@@ -9,6 +9,7 @@ import connection.connectDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,35 +50,42 @@ public class validateToken extends HttpServlet {
             connectDB connDB = new connectDB();
             Connection conn = connDB.connectIS();
             
-            String query = "SELECT * FROM token WHERE token = '" + token + "' AND expirydate > NOW()";
+            String query = "SELECT * FROM token WHERE token = '" + token + "'";
             try {
                 PreparedStatement ps = conn.prepareStatement(query);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    int id_user = rs.getInt("id_user");
-                    String newtoken = UUID.randomUUID().toString().replaceAll("-", "");
-                    String newQuery = "UPDATE token SET token = '" +newtoken+ "', expirydate = NOW() + INTERVAL 10 MINUTE WHERE id_user = " + id_user;
-                    PreparedStatement ps1 = conn.prepareStatement(newQuery);
-                    int result = ps1.executeUpdate();
-                    if (result > 0) {
-                        obj.put("status", "valid");
-                        obj.put("token", newtoken);
-                    }
-                } else {
-                    query = "SELECT * FROM token WHERE token = '" + token + "'";
+                    query = "SELECT * FROM token WHERE token = '" + token + "' AND expirydate > NOW()";
                     ps = conn.prepareStatement(query);
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         int id_user = rs.getInt("id_user");
-                        String newQuery = "DELETE FROM token WHERE id_user = " + id_user;
+                        String newtoken = UUID.randomUUID().toString().replaceAll("-", "");
+                        String newQuery = "UPDATE token SET token = '" +newtoken+ "', expirydate = NOW() + INTERVAL 10 MINUTE WHERE id_user = " + id_user;
                         PreparedStatement ps1 = conn.prepareStatement(newQuery);
                         int result = ps1.executeUpdate();
                         if (result > 0) {
-                            obj.put("status", "invalid");
-                            obj.put("token", token);
-                            System.out.println("xxx");
+                            obj.put("status", "valid");
+                            obj.put("token", newtoken);
+                        }
+                    } else {
+                        query = "SELECT * FROM token WHERE token = '" + token + "'";
+                        ps = conn.prepareStatement(query);
+                        rs = ps.executeQuery();
+                        if (rs.next()) {
+                            int id_user = rs.getInt("id_user");
+                            String newQuery = "DELETE FROM token WHERE id_user = " + id_user;
+                            PreparedStatement ps1 = conn.prepareStatement(newQuery);
+                            int result = ps1.executeUpdate();
+                            if (result > 0) {
+                                obj.put("status", "invalid");
+                                obj.put("token", token);
+                            }
                         }
                     }
+                } else {
+                    obj.put("status", "invalid");
+                    obj.put("token", token);
                 }
             }
             catch (SQLException ex) {

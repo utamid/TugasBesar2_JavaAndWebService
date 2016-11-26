@@ -76,7 +76,6 @@
                 JSONObject obj = (JSONObject) parser.parse(resp.toString());
                 HttpSession sessions = request.getSession();
                 String status= (String) obj.get("status");
-                System.out.println("status "+ status);
                 if(status.equals("valid")){
                     String user_id = (String) obj.get("id_user");
                     String token= (String) obj.get("token");

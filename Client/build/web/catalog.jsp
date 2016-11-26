@@ -31,8 +31,12 @@
         <div class="hi">
             <%
                 String name = (String) request.getSession().getAttribute("username");
+                String token = (String) request.getSession().getAttribute("token");
                 String idus = (String) request.getSession().getAttribute("id_user");
-            String token = (String) request.getSession().getAttribute("token");
+                String status = (String) request.getSession().getAttribute("status");
+                if (status.equals("invalid")) {
+                    response.sendRedirect("login.jsp");
+                }
                 out.println("<p>Hi, " + name + "!</p>");
             %>
             <form method="POST" name="logout">
@@ -68,12 +72,9 @@
                     JSONParser parser = new JSONParser();
 
                     JSONObject obj = (JSONObject) parser.parse(resp.toString());
-
-                    String status= (String) obj.get("status");                
-
                     HttpSession sessions = request.getSession();
-
-                    sessions.setAttribute("status", status);
+                    String status1 = (String) obj.get("status"); 
+                    sessions.setAttribute("status", status1);
                     response.sendRedirect("login.jsp");
                 }
             %>
@@ -122,7 +123,6 @@
                     java.lang.String idUser = idus;
                     result = port.viewCatalog(token, idUser);
                 }
-                String status = result.getStatus();
                 if (result.getStatus().equals("valid")) {
                     HttpSession sessions = request.getSession();
                     sessions.setAttribute("token", result.getToken());

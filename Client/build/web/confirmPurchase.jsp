@@ -36,6 +36,10 @@
                 String name = (String) request.getSession().getAttribute("username");
                 String idus = (String) request.getSession().getAttribute("id_user");
                 String token = (String) request.getSession().getAttribute("token");
+                String status1 = (String) request.getSession().getAttribute("status");
+                if (status1.equals("invalid")) {
+                    response.sendRedirect("login.jsp");
+                }
                 out.println("<p>Hi, " + name + "!</p>");
             %>
             <form method="POST" name="logout">
@@ -77,7 +81,7 @@
 
                     HttpSession sessions = request.getSession();
 
-                    sessions.setAttribute("status", status);
+                    sessions.setAttribute("status", status1);
                     response.sendRedirect("login.jsp");
                 }
             %>

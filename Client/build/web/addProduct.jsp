@@ -36,6 +36,10 @@
                 String name = (String) request.getSession().getAttribute("username");
                 String idus = (String) request.getSession().getAttribute("id_user");
                 String token = (String) request.getSession().getAttribute("token");
+                String status = (String) request.getSession().getAttribute("status");
+                if (status.equals("invalid")) {
+                    response.sendRedirect("login.jsp");
+                }
                 out.println("<p>Hi, " + name + "!</p>");
             %>
             <form method="POST" name="logout">
@@ -72,11 +76,11 @@
 
                     JSONObject obj = (JSONObject) parser.parse(resp.toString());
 
-                    String status= (String) obj.get("status");                
+                    String status1= (String) obj.get("status");                
 
                     HttpSession sessions = request.getSession();
 
-                    sessions.setAttribute("status", status);
+                    sessions.setAttribute("status", status1);
                     response.sendRedirect("login.jsp");
                 }
             %>
@@ -125,8 +129,8 @@
                     photo = request.getParameter("photo");
 
                     result =  port.insertnewproduct(token, prodname, price, description, photo, seller_id);
-                    String status = result.getStatus();
-                    if (status.equals("valid")) {
+                    String status2 = result.getStatus();
+                    if (status2.equals("valid")) {
                         HttpSession sessions = request.getSession();
                         sessions.setAttribute("token", result.getToken());
                         sessions.setAttribute("status", "valid");

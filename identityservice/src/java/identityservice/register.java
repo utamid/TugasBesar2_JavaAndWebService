@@ -116,41 +116,26 @@ public class register extends HttpServlet {
                     JSObj.put("id_user",((Integer)id_user).toString());
                     JSObj.put("username", u.getUsername());
                     
-                    String query = "INSERT INTO token VALUES ('"+ id_user+"','"+ token +"',NOW() + INTERVAL 10 MINUTE,NOW()))";
-                //to trace the process in console
-                  
+                    String query = "INSERT INTO token VALUES ('"+ id_user+"','"+ token +"',NOW() + INTERVAL 10 MINUTE, NOW())";
+                    
                     connectDB connDB = new connectDB();
                     Connection conn = connDB.connectIS();
                            
                     try {
-                        //connect to datbabase
-
                         PreparedStatement ps = conn.prepareStatement(query);
-                        int i=ps.executeUpdate();
-             
+                        int i = ps.executeUpdate();
                     }
 
                     catch (SQLException ex) {
                         System.out.println("Register failed: An Exception has occurred! " + ex);
                     }
-
-                    finally {
-                        if (conn!=null) {
-                           try {
-                               conn.close();
-                           }
-                           catch (SQLException ex) {}
-                                    conn = null;
-                        }
-                    }
-                    JSObj.put("status", "valid");
-
+                    connDB.closeConn();
                     
+                    JSObj.put("status", "valid");
                     
                 } else {
                     JSObj.put("status","invalid");
                 }
-             
             }
             response.setContentType("application/json:charset=UTF-8");
             response.getWriter().write(JSObj.toString());

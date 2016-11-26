@@ -156,7 +156,7 @@ public class catalog {
                         sql1.setString(1, Integer.toString(idpro));
                         ResultSet result1 = sql1.executeQuery();
                         int likes = 0;
-                        if (result1.getRow() != 0) {
+                        if (result1.next()) {
                             likes = result1.getInt("count(id_product)");
                         }
 
@@ -164,10 +164,10 @@ public class catalog {
                         sql2.setString(1, Integer.toString(idpro));
                         ResultSet result2 = sql2.executeQuery();
                         int purch = 0;
-                        if (result2.getRow() != 0) {
+                        if (result2.next()) {
                             purch = result2.getInt("sum(quantity)");
                         }
-
+                        
                         PreparedStatement sql3 = conn.prepareStatement("SELECT * FROM likes WHERE id_product = ? AND id_user = ?");
                         sql3.setString(1, Integer.toString(idpro));
                         sql3.setString(2, idus);
